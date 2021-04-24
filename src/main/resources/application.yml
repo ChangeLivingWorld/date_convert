@@ -1,0 +1,27 @@
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  type-aliases-package: com.wwtx.chinesemedicine.service.models.domain
+  typeAliasesPackage: com.wwtx.chinesemedicine.service.models.domain
+
+
+server:
+  port: 8085
+
+spring:
+  #设置时间格式及时区
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  servlet:
+    multipart:
+      max-file-size: 500MB #上传单个文件最大
+      max-request-size: 500MB #是设置单次请求的文件的总大小
+
+  profiles:
+    active: dev
+
+api:
+  type: api
