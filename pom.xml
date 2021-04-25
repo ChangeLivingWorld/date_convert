@@ -22,40 +22,13 @@
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
             <version>${swagger.version}</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>guava</artifactId>
-                    <groupId>com.google.guava</groupId>
-                </exclusion>
-<!--                <exclusion>-->
-<!--                    <artifactId>byte-buddy</artifactId>-->
-<!--                    <groupId>net.bytebuddy</groupId>-->
-<!--                </exclusion>-->
-<!--                <exclusion>-->
-<!--                    <artifactId>slf4j-api</artifactId>-->
-<!--                    <groupId>org.slf4j</groupId>-->
-<!--                </exclusion>-->
-<!--                <exclusion>-->
-<!--                    <artifactId>spring-beans</artifactId>-->
-<!--                    <groupId>org.springframework</groupId>-->
-<!--                </exclusion>-->
-<!--                <exclusion>-->
-<!--                    <artifactId>spring-core</artifactId>-->
-<!--                    <groupId>org.springframework</groupId>-->
-<!--                </exclusion>-->
-<!--                <exclusion>-->
-<!--                    <artifactId>spring-expression</artifactId>-->
-<!--                    <groupId>org.springframework</groupId>-->
-<!--                </exclusion>-->
-<!--                <exclusion>-->
-<!--                    <artifactId>springfox-core</artifactId>-->
-<!--                    <groupId>io.springfox</groupId>-->
-<!--                </exclusion>-->
-<!--                <exclusion>-->
-<!--                    <artifactId>spring-plugin-core</artifactId>-->
-<!--                    <groupId>org.springframework.plugin</groupId>-->
-<!--                </exclusion>-->
-            </exclusions>
+            <!--<exclusions>-->
+            <!--    <exclusion>-->
+            <!--        <artifactId>guava</artifactId>-->
+            <!--        <groupId>com.google.guava</groupId>-->
+            <!--    </exclusion>-->
+
+            <!--</exclusions>-->
         </dependency>
         <!-- swagger-ui -->
         <dependency>
@@ -63,12 +36,14 @@
             <artifactId>springfox-swagger-ui</artifactId>
             <version>${swagger.version}</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.12</version>
+            <scope>provided</scope>
+        </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>org.hibernate</groupId>-->
-<!--            <artifactId>hibernate-validator</artifactId>-->
-<!--            <version>${hibernate-validator.version}</version>-->
-<!--        </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -196,6 +171,16 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+
         </plugins>
 
         <resources>

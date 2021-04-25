@@ -1,8 +1,11 @@
 package com.cmbc.utils;
 
+import com.cmbc.models.dto.JsonResult;
+import com.cmbc.models.dto.ResultStatusCode;
 import com.cmbc.models.vo.DateVo;
 import org.springframework.beans.factory.annotation.Value;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -16,24 +19,28 @@ public class DateConvertUtil {
      * @param dateVo
      * @return date
      */
-    public static Date initializeUtil(DateVo dateVo){
+    public static JsonResult initializeUtil(DateVo dateVo){
         //获取传入的交易日期
         Date date = dateVo.getDate();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         //如果传入时间为当天15点之前，则向前推一天
-        if (calendar.HOUR_OF_DAY > 15){
-            calendar.set(calendar.HOUR_OF_DAY, calendar.get(calendar.HOUR_OF_DAY) + 1);
+        int year = calendar.get(calendar.YEAR);
+        int hour = calendar.get(calendar.HOUR_OF_DAY);
+        if (hour > 15){
+            calendar.set(calendar.DAY_OF_MONTH, calendar.get(calendar.DAY_OF_MONTH) + 1);
         }
         //判断输入年份是否为2021年
-        if (calendar.YEAR != 2021){
-            return null;
+        if (year != 2021){
+            return new JsonResult(ResultStatusCode.YEAR_ERROR);
         }
         //判断传入的交易日期是否为周末或节假日
         while (holidayList.contains(dateVo)){
             calendar.set(Calendar.DATE, calendar.get(Calendar.DATE) + 1);
         }
-        return calendar.getTime();
+        //修改日期格式
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd");
+        return JsonResult.success(sdf.format(calendar.getTime()));
     }
 
     /**
@@ -42,7 +49,7 @@ public class DateConvertUtil {
      * @param day
      * @return date
      */
-    public static Date anytimeInitializeUtil(DateVo dateVo, int day){
+    public static JsonResult anytimeInitializeUtil(DateVo dateVo, int day){
         //获取传入交易时间
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(dateVo.getDate());
