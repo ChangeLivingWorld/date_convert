@@ -3,17 +3,10 @@ package com.cmbc.controller;
 import com.alibaba.fastjson.parser.ParserConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cache.annotation.EnableCaching;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
-import org.springframework.scheduling.annotation.EnableAsync;
-import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
 
-@SpringBootApplication(scanBasePackages = {"com.cmbc"})
-@EnableAspectJAutoProxy
-@EnableAsync
-@EnableCaching
-@EnableScheduling
+@SpringBootApplication(scanBasePackages = {"com.cmbc"},exclude = {DataSourceAutoConfiguration.class})
 public class Application {
     public static void main(String[] args) {
 
